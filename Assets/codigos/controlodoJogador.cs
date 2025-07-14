@@ -3,6 +3,7 @@ using UnityEngine;
 public class controlodoJogador : MonoBehaviour
 {   
     private Rigidbody playerRb;
+    private Animator PlayerAnim;
 public float jumpForce = 10;
 public float gravityModifier;
 public bool isOnGround = true;
@@ -11,6 +12,7 @@ public bool gameOver;
 void Start()
 {
     playerRb = GetComponent<Rigidbody>();
+    PlayerAnim = GetComponent<Animator>();
     Physics.gravity *= gravityModifier;
 }
 
@@ -21,6 +23,7 @@ void Update()
     {
         playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         isOnGround = false;
+        PlayerAnim.SetTrigger("Jump_trig");
     }
 }
 
