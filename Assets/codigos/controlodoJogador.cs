@@ -4,6 +4,7 @@ public class controlodoJogador : MonoBehaviour
 {   
     private Rigidbody playerRb;
     private Animator PlayerAnim;
+    public ParticleSystem explosionParticle;
 public float jumpForce = 10;
 public float gravityModifier;
 public bool isOnGround = true;
@@ -39,6 +40,7 @@ else if (collision.gameObject.CompareTag("obstaculo"))
     gameOver = true;
     PlayerAnim.SetBool("Death_b", true);
     PlayerAnim.SetInteger("DeathType_int", 1);
+    explosionParticle.Play();
 }
 }
 
