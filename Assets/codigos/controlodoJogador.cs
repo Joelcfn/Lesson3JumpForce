@@ -5,6 +5,7 @@ public class controlodoJogador : MonoBehaviour
     private Rigidbody playerRb;
     private Animator PlayerAnim;
     public ParticleSystem explosionParticle;
+    public ParticleSystem dirtParticle;
 public float jumpForce = 10;
 public float gravityModifier;
 public bool isOnGround = true;
@@ -25,6 +26,7 @@ void Update()
         playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         isOnGround = false;
         PlayerAnim.SetTrigger("Jump_trig");
+        dirtParticle.Stop();
     }
 }
 
@@ -33,6 +35,7 @@ private void OnCollisionEnter(Collision collision)
     if (collision.gameObject.CompareTag("Ground"))
 {
     isOnGround = true;
+    dirtParticle.Play();
 }
 else if (collision.gameObject.CompareTag("obstaculo"))
 {
@@ -41,6 +44,7 @@ else if (collision.gameObject.CompareTag("obstaculo"))
     PlayerAnim.SetBool("Death_b", true);
     PlayerAnim.SetInteger("DeathType_int", 1);
     explosionParticle.Play();
+    dirtParticle.Stop();
 }
 }
 
