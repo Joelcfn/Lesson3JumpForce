@@ -4,6 +4,7 @@ public class controlodoJogador : MonoBehaviour
 {   
     private Rigidbody playerRb;
     private Animator PlayerAnim;
+    private AudioSource playerAudio;
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
     public AudioClip jumpSound;
@@ -17,6 +18,7 @@ void Start()
 {
     playerRb = GetComponent<Rigidbody>();
     PlayerAnim = GetComponent<Animator>();
+    playerAudio = GetComponent<AudioSource>();
     Physics.gravity *= gravityModifier;
 }
 
@@ -29,6 +31,7 @@ void Update()
         isOnGround = false;
         PlayerAnim.SetTrigger("Jump_trig");
         dirtParticle.Stop();
+        playerAudio.PlayOneShot(jumpSound, 1.0f);
     }
 }
 
@@ -47,6 +50,7 @@ else if (collision.gameObject.CompareTag("obstaculo"))
     PlayerAnim.SetInteger("DeathType_int", 1);
     explosionParticle.Play();
     dirtParticle.Stop();
+    playerAudio.PlayOneShot(crashSound, 1.0f);  
 }
 }
 
