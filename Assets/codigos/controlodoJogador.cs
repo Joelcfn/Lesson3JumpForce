@@ -37,6 +37,8 @@ else if (collision.gameObject.CompareTag("obstaculo"))
 {
     Debug.Log("Game Over");
     gameOver = true;
+    PlayerAnim.SetBool("Death_b", true);
+    PlayerAnim.SetInteger("DeathType_int", 1);
 }
 }
 
