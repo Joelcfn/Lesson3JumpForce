@@ -1,16 +1,20 @@
 using UnityEngine;
 
 public class repitirfundo : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+{private Vector3 startPos;
 
-    // Update is called once per frame
-    void Update()
+// Start is called before the first frame update
+void Start()
+{
+    startPos = transform.position;
+}
+
+// Update is called once per frame
+void Update()
+{
+    if (transform.position.x < startPos.x - 50)
     {
-        
+        transform.position = startPos;
     }
+}
 }
